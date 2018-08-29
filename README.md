@@ -29,6 +29,18 @@ Restart Home Assistant. Then run the service `shell_command.lovelace_gen`, prefe
 
 This will create the file `ui_lovelace.yaml`.
 
+Or add below automation to your configuration file along with shell command. This will create file `ui_lovelace.yaml` on each restart of HA.
+
+ ```yaml
+ automation:
+  - alias: homeassistant_start_lovelace_genn
+    hide_entity: true
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: shell_command.lovelace_gen
+  ```
 **If something doesn't work**
 
 First of all, check the homeassistant log. It might show an error
